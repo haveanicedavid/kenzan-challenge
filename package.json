@@ -1,0 +1,19 @@
+{
+  "name": "kenzan-challenge",
+  "version": "1.0.0",
+  "description": "Coding challenge for Kenzan",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haveanicedavid/kenzan-challenge.git"
+  },
+  "author": "David Daniel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haveanicedavid/kenzan-challenge/issues"
+  },
+  "homepage": "https://github.com/haveanicedavid/kenzan-challenge#readme"
+}
