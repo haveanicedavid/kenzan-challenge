@@ -29,13 +29,40 @@
           <th class="coin">Coin</th>
           <th class="amount">Amount</th>
         </tr>
+
         <tr>
           <td>1p</td>
-          <td class="amount">10</td>
+          <td class="amount">{{ onePence }}</td>
+        </tr>
+
+        <tr>
+          <td>2p</td>
+          <td class="amount">{{ twoPence }}</td>
+        </tr>
+
+        <tr>
+          <td>20p</td>
+          <td class="amount">{{ twentyPence }}</td>
+        </tr>
+
+        <tr>
+          <td>50p</td>
+          <td class="amount">{{ fiftyPence }}</td>
+        </tr>
+
+        <tr>
+          <td>£1</td>
+          <td class="amount">{{ onePound }}</td>
+        </tr>
+
+        <tr>
+          <td>£2</td>
+          <td class="amount">{{ twoPound }}</td>
         </tr>
       </table>
+
     </div>
-    <h2>{{ coins }} </h2>
+
   </div>
 
   <script src="main.bundle.js"></script>
