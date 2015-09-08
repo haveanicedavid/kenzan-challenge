@@ -13,10 +13,36 @@ describe('Coin Converter', function() {
     assert.equal(coin.twoPound, 1);
   });
 
-  xit('should convert three pounds to one 2 pound coin and one 1 pound coin', function () {
+  it('should convert three pounds to one 2 pound coin and one 1 pound coin', function () {
     var coin = new coinConverter(3.00);
     assert.equal(coin.twoPound, 1);
     assert.equal(coin.onePound, 1);
+  });
+
+  it('starts converting at the highest coin', function () {
+    var coin = new coinConverter(4.00);
+    assert.equal(coin.twoPound, 2);
+    assert.equal(coin.onePound, 0);
+  });
+
+  it('converts fifty pence to one fiftyPence coin', function () {
+    var coin = new coinConverter(0.50);
+    assert.equal(coin.fiftyPence, 1);
+  });
+
+  it('converts twenty pence', function () {
+    var coin = new coinConverter(0.40);
+    assert.equal(coin.twentyPence, 2);
+  });
+
+  it('converts 3.65', function () {
+    var coin = new coinConverter(3.65);
+    assert.equal(coin.twoPound, 1);
+    assert.equal(coin.onePound, 1);
+    assert.equal(coin.fiftyPence, 1);
+    assert.equal(coin.twentyPence, 0);
+    assert.equal(coin.twoPence, 7);
+    assert.equal(coin.onePence, 1);
   });
 
 });
