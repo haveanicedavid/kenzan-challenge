@@ -2,12 +2,8 @@ var app = require('../app.js');
 var coinConverter = require('../coin-converter.js');
 
 module.exports = app.controller('MainController', ['$scope', function($scope) {
-  // $scope.onePence    = 0;
-  // $scope.twoPence    = 0;
-  // $scope.twentyPence = 0;
-  // $scope.fiftyPence  = 0;
-  // $scope.onePound    = 0;
-  // $scope.twoPound    = 0;
+
+  $scope.pennies = undefined; // attached to the ng-model 'pennies'
   $scope.coins = {
     onePence:    0,
     twoPence:    0,
@@ -18,7 +14,6 @@ module.exports = app.controller('MainController', ['$scope', function($scope) {
   };
 
   $scope.currencyConvert = function() {
-    // pennies are attached to the ng-model 'pennies' in the input field
     var coins = coinConverter($scope.pennies);
 
     for (var coin in coins) {
