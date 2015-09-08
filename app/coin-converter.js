@@ -34,13 +34,13 @@ function sanitizeCurrency (startingCurrency) {
   if (startingCurrency.indexOf("p") > -1) {
     if (startingCurrency.indexOf('.') > -1) {
       var int = parseFloat(startingCurrency.replace(/[^.\d]/g, ""));
-      return int * 100;
+      return int.toFixed(2) * 100;
     } else {
       var int = parseFloat(startingCurrency.replace(/[^\d]/g, ""));
-      return parseFloat(int);
+      return parseFloat(int).toFixed(2);
     }
   } else{
-    return parseFloat(startingCurrency) * 100;
+    return parseFloat(startingCurrency).toFixed(2) * 100;
   }
 }
 
