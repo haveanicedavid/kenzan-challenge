@@ -4,7 +4,8 @@
   "description": "Coding challenge for Kenzan",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "test": "./node_modules/mocha/bin/mocha ./test"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,16 @@
   "bugs": {
     "url": "https://github.com/haveanicedavid/kenzan-challenge/issues"
   },
-  "homepage": "https://github.com/haveanicedavid/kenzan-challenge#readme"
+  "homepage": "https://github.com/haveanicedavid/kenzan-challenge#readme",
+  "dependencies": {
+    "angular": "^1.4.5",
+    "chai": "^3.2.0",
+    "mocha": "^2.3.2",
+    "mocha-loader": "^0.7.1",
+    "webpack": "^1.12.1",
+    "webpack-dev-server": "^1.10.1"
+  },
+  "devDependencies": {
+    "jshint": "^2.8.0"
+  }
 }
