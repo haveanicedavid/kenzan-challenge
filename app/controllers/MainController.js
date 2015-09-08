@@ -13,7 +13,7 @@ module.exports = app.controller('MainController', ['$scope', function($scope) {
     twoPound:    0
   };
 
-  $scope.currencyConvert = function() {
+  $scope.convertCoins = function() {
     var coins = coinConverter($scope.pennies);
 
     for (var coin in coins) {

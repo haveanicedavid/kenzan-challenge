@@ -35,7 +35,7 @@ describe('Coin Converter', function() {
     assert.equal(coin.twentyPence, 2);
   });
 
-  it('converts 3.65', function () {
+  it('converts 3.65', function () { // Amount given in example document
     var coin = new coinConverter(3.65);
     assert.equal(coin.twoPound, 1);
     assert.equal(coin.onePound, 1);
