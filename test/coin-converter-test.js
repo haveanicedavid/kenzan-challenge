@@ -1,5 +1,5 @@
 var assert        = require('chai').assert;
-var coinConverter = require('../app/coin-converter.js');
+var coinConverter = require('../app/services/coin-converter.js');
 
 describe('Coin Converter', function() {
   

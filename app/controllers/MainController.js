@@ -1,7 +1,10 @@
 var app = require('../app.js');
-var coinConverter = require('../coin-converter.js');
 
-module.exports = app.controller('MainController', ['$scope', function($scope) {
+require('../services/coin-converter.js');
+require('../services/valid-entry.js');
+
+app.controller('MainController', ['$scope', 'coinConverter', 'validEntry', function($scope, coinConverter, validEntry) {
+// app.controller('MainController', ['$scope', 'convertCoins', function($scope, convertCoins) {
 
   $scope.showInvalidError = false; // This is not an ideal way to do validations
 
@@ -18,7 +21,7 @@ module.exports = app.controller('MainController', ['$scope', function($scope) {
 
   $scope.convertCoins = function() {
 
-    if (isValidEntry($scope.pennies)) {
+    if (validEntry($scope.pennies)) {
       $scope.showInvalidError = true;
     } else {
       $scope.showInvalidError = false;
@@ -32,13 +35,13 @@ module.exports = app.controller('MainController', ['$scope', function($scope) {
 
 }]);
 
-function isValidEntry (input) {
-  var VALID_CHARS  = /[^.p£\d]/g;
-  var ONLY_NUMBERS = /\d/;
+// function isValidEntry (input) {
+//   var VALID_CHARS  = /[^.p£\d]/g;
+//   var ONLY_NUMBERS = /\d/;
 
-  if (VALID_CHARS.test(input) || ! ONLY_NUMBERS.test(input)) {
-    return true;
-  } else {
-    return false;
-  }
-}
+//   if (VALID_CHARS.test(input) || ! ONLY_NUMBERS.test(input)) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
