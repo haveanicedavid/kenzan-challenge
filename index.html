@@ -14,15 +14,19 @@
         <span>Please insert a number to be converted</span>
       </h1>
 
-      <label>
-        <span>Starting Amount :</span>
-        <input ng-model="pennies" id="pennies" type="pennies" name="pennies" placeholder="Amount" />
-      </label>
+      <form name="form" nonvalidate>
+        <label>
+          <span>Starting Amount :</span>
+          <input ng-model="pennies" validCurrency id="pennies"  name="pennies" placeholder="Amount" />
+        </label>
+      </form>
 
       <label>
         <span>&nbsp;</span> 
         <input type="button" class="button" value="Convert" ng-click="convertCoins()"/> 
       </label>    
+
+      <span ng-show="showInvalidError">Input must be made of digits, pence, and £ symbols. </span>
 
       <table id="main">
         <tr>

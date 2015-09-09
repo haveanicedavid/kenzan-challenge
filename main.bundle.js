@@ -46,7 +46,7 @@
 
 	__webpack_require__(1);
 	__webpack_require__(1);
-	module.exports = __webpack_require__(6);
+	module.exports = __webpack_require__(8);
 
 
 /***/ },
@@ -56,6 +56,7 @@
 	__webpack_require__(2);
 	__webpack_require__(4);
 	__webpack_require__(5);
+	__webpack_require__(7);
 
 	// var angular = require('angular');
 
@@ -28765,19 +28766,181 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var angular = __webpack_require__(2);
+	var VALID_NUMBER = /[^.p£\d]/g;
 
-	module.exports =  angular.module('kenzanApplication', []);
+	var app = angular.module('kenzanApplication', [])
+	  .directive('validCurrency', function() {
+	  return {
+	    require: 'ngModel',
+	    // require: 'pennies',
+	    link: function(scope, elm, attrs, ctrl) {
+	      ctrl.$validators.validCurrency = function(modelValue, viewValue) {
+	        if (ctrl.$isEmpty(modelValue)) {
+	          // empty models are invalid
+	          return false;
+	        }
+
+	        if (VALID_NUMBER.test(viewValue)) {
+	          // anything besides digits, periods, pound, and pence symbol are invalid
+	          return false;
+	        }
+
+	        // it is invalid
+	        return true;
+	      };
+	    }
+	  };
+	});
+
+	module.exports = app;
 
 /***/ },
 /* 5 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	app.controller('MainController', ['$scope', function($scope) {
-	  $scope.title = "Testing";
+	var app = __webpack_require__(4);
+	var coinConverter = __webpack_require__(6);
+
+	module.exports = app.controller('MainController', ['$scope', function($scope) {
+
+	  $scope.pennies = undefined; // attached to the ng-model 'pennies'
+	  $scope.coins = {
+	    onePence:    0,
+	    twoPence:    0,
+	    twentyPence: 0,
+	    fiftyPence:  0,
+	    onePound:    0,
+	    twoPound:    0
+	  };
+
+	  $scope.convertCoins = function() {
+	    var coins = coinConverter($scope.pennies);
+
+	    for (var coin in coins) {
+	      $scope.coins[coin] = coins[coin];
+	    }
+	  };
+
 	}]);
+
+	// var app = require('../app.js');
+	// var coinConverter = require('../coin-converter.js');
+
+	// module.exports = app.controller('MainController', ['$scope', function($scope) {
+
+	//   $scope.showInvalidError = false; // This is not an ideal way to do validations
+
+	//   $scope.pennies = undefined; // attached to the ng-model 'pennies'
+	//   $scope.coins = {
+	//     onePence:    0,
+	//     twoPence:    0,
+	//     twentyPence: 0,
+	//     fiftyPence:  0,
+	//     onePound:    0,
+	//     twoPound:    0
+	//   };
+
+	//   var VALID_NUMBER = /[^.p£\d]/g;
+
+	//   $scope.convertCoins = function() {
+	//     if (VALID_NUMBER.test($scope.pennies) || $scope.pennies === null) {
+	//       $scope.showInvalidError = true;
+	//     } else {
+	//       $scope.showInvalidError = false;
+	//       var coins = coinConverter($scope.pennies);
+
+	//       for (var coin in coins) {
+	//         $scope.coins[coin] = coins[coin];
+	//       }
+	//     }
+	//   };
+
+	// }]);
 
 /***/ },
 /* 6 */
+/***/ function(module, exports) {
+
+	var coinValues = {
+	  twoPound:    200,
+	  onePound:    100,
+	  fiftyPence:  50,
+	  twentyPence: 20,
+	  twoPence:    2,
+	  onePence:    1
+	};
+
+	function coinConverter (startingCurrency) {
+	  var pennies = sanitizeCurrency(startingCurrency);
+	  var coins = {
+	    twoPound:    0,
+	    onePound:    0,
+	    fiftyPence:  0,
+	    twentyPence: 0,
+	    twoPence:    0,
+	    onePence:    0
+	  };
+
+	  for (var coin in coins) {
+	    coins[coin] = Math.floor(pennies / coinValues[coin]);
+	    pennies     = pennies % coinValues[coin];
+	  }
+	  
+	  return coins;
+	}
+
+	// startingcurrency = string
+	// Pound sign needs to be in the validations, but can be ingored for conversion
+	function sanitizeCurrency (startingCurrency) {
+	  startingCurrency.replace(/[^.p\d]/g, "");
+
+	  if (startingCurrency.indexOf("p") > -1) {
+	    if (startingCurrency.indexOf('.') > -1) {
+	      var int = parseFloat(startingCurrency.replace(/[^.\d]/g, ""));
+	      return int.toFixed(2) * 100;
+	    } else {
+	      var int = parseFloat(startingCurrency.replace(/[^\d]/g, ""));
+	      return parseFloat(int).toFixed(2);
+	    }
+	  } else{
+	    return parseFloat(startingCurrency).toFixed(2) * 100;
+	  }
+	}
+
+	module.exports = coinConverter;
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var app = __webpack_require__(4);
+
+	var VALID_NUMBER = /[^.p£\d]/g;
+
+	module.exports = app.directive('validCurrency', function() {
+	  return {
+	    require: 'pennies',
+	    link: function(scope, elm, attrs, ctrl) {
+	      ctrl.$validators.validCurrency = function(modelValue, viewValue) {
+	        if (ctrl.$isEmpty(modelValue)) {
+	          // empty models are invalid
+	          return false;
+	        }
+
+	        if (VALID_NUMBER.test(viewValue)) {
+	          // anything besides digits, periods, pound, and pence symbol are invalid
+	          return false;
+	        }
+
+	        // it is invalid
+	        return true;
+	      };
+	    }
+	  };
+	});
+
+/***/ },
+/* 8 */
 /***/ function(module, exports) {
 
 	/******/ (function(modules) { // webpackBootstrap
@@ -28829,6 +28992,7 @@
 		__webpack_require__(1);
 		__webpack_require__(3);
 		__webpack_require__(4);
+		__webpack_require__(6);
 
 		// var angular = require('angular');
 
@@ -57538,16 +57702,178 @@
 	/***/ function(module, exports, __webpack_require__) {
 
 		var angular = __webpack_require__(1);
+		var VALID_NUMBER = /[^.p£\d]/g;
 
-		module.exports =  angular.module('kenzanApplication', []);
+		var app = angular.module('kenzanApplication', [])
+		  .directive('validCurrency', function() {
+		  return {
+		    require: 'ngModel',
+		    // require: 'pennies',
+		    link: function(scope, elm, attrs, ctrl) {
+		      ctrl.$validators.validCurrency = function(modelValue, viewValue) {
+		        if (ctrl.$isEmpty(modelValue)) {
+		          // empty models are invalid
+		          return false;
+		        }
+
+		        if (VALID_NUMBER.test(viewValue)) {
+		          // anything besides digits, periods, pound, and pence symbol are invalid
+		          return false;
+		        }
+
+		        // it is invalid
+		        return true;
+		      };
+		    }
+		  };
+		});
+
+		module.exports = app;
 
 	/***/ },
 	/* 4 */
+	/***/ function(module, exports, __webpack_require__) {
+
+		var app = __webpack_require__(3);
+		var coinConverter = __webpack_require__(5);
+
+		module.exports = app.controller('MainController', ['$scope', function($scope) {
+
+		  $scope.pennies = undefined; // attached to the ng-model 'pennies'
+		  $scope.coins = {
+		    onePence:    0,
+		    twoPence:    0,
+		    twentyPence: 0,
+		    fiftyPence:  0,
+		    onePound:    0,
+		    twoPound:    0
+		  };
+
+		  $scope.convertCoins = function() {
+		    var coins = coinConverter($scope.pennies);
+
+		    for (var coin in coins) {
+		      $scope.coins[coin] = coins[coin];
+		    }
+		  };
+
+		}]);
+
+		// var app = require('../app.js');
+		// var coinConverter = require('../coin-converter.js');
+
+		// module.exports = app.controller('MainController', ['$scope', function($scope) {
+
+		//   $scope.showInvalidError = false; // This is not an ideal way to do validations
+
+		//   $scope.pennies = undefined; // attached to the ng-model 'pennies'
+		//   $scope.coins = {
+		//     onePence:    0,
+		//     twoPence:    0,
+		//     twentyPence: 0,
+		//     fiftyPence:  0,
+		//     onePound:    0,
+		//     twoPound:    0
+		//   };
+
+		//   var VALID_NUMBER = /[^.p£\d]/g;
+
+		//   $scope.convertCoins = function() {
+		//     if (VALID_NUMBER.test($scope.pennies) || $scope.pennies === null) {
+		//       $scope.showInvalidError = true;
+		//     } else {
+		//       $scope.showInvalidError = false;
+		//       var coins = coinConverter($scope.pennies);
+
+		//       for (var coin in coins) {
+		//         $scope.coins[coin] = coins[coin];
+		//       }
+		//     }
+		//   };
+
+		// }]);
+
+	/***/ },
+	/* 5 */
 	/***/ function(module, exports) {
 
-		app.controller('MainController', ['$scope', function($scope) {
-		  $scope.title = "Testing";
-		}]);
+		var coinValues = {
+		  twoPound:    200,
+		  onePound:    100,
+		  fiftyPence:  50,
+		  twentyPence: 20,
+		  twoPence:    2,
+		  onePence:    1
+		};
+
+		function coinConverter (startingCurrency) {
+		  var pennies = sanitizeCurrency(startingCurrency);
+		  var coins = {
+		    twoPound:    0,
+		    onePound:    0,
+		    fiftyPence:  0,
+		    twentyPence: 0,
+		    twoPence:    0,
+		    onePence:    0
+		  };
+
+		  for (var coin in coins) {
+		    coins[coin] = Math.floor(pennies / coinValues[coin]);
+		    pennies     = pennies % coinValues[coin];
+		  }
+		  
+		  return coins;
+		}
+
+		// startingcurrency = string
+		// Pound sign needs to be in the validations, but can be ingored for conversion
+		function sanitizeCurrency (startingCurrency) {
+		  startingCurrency.replace(/[^.p\d]/g, "");
+
+		  if (startingCurrency.indexOf("p") > -1) {
+		    if (startingCurrency.indexOf('.') > -1) {
+		      var int = parseFloat(startingCurrency.replace(/[^.\d]/g, ""));
+		      return int.toFixed(2) * 100;
+		    } else {
+		      var int = parseFloat(startingCurrency.replace(/[^\d]/g, ""));
+		      return parseFloat(int).toFixed(2);
+		    }
+		  } else{
+		    return parseFloat(startingCurrency).toFixed(2) * 100;
+		  }
+		}
+
+		module.exports = coinConverter;
+
+	/***/ },
+	/* 6 */
+	/***/ function(module, exports, __webpack_require__) {
+
+		var app = __webpack_require__(3);
+
+		var VALID_NUMBER = /[^.p£\d]/g;
+
+		module.exports = app.directive('validCurrency', function() {
+		  return {
+		    require: 'pennies',
+		    link: function(scope, elm, attrs, ctrl) {
+		      ctrl.$validators.validCurrency = function(modelValue, viewValue) {
+		        if (ctrl.$isEmpty(modelValue)) {
+		          // empty models are invalid
+		          return false;
+		        }
+
+		        if (VALID_NUMBER.test(viewValue)) {
+		          // anything besides digits, periods, pound, and pence symbol are invalid
+		          return false;
+		        }
+
+		        // it is invalid
+		        return true;
+		      };
+		    }
+		  };
+		});
 
 	/***/ }
 	/******/ ]);

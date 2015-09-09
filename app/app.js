@@ -1,3 +1,5 @@
 var angular = require('angular');
 
-module.exports = angular.module('kenzanApplication', []);
+var app = angular.module('kenzanApplication', []);
+
+module.exports = app;

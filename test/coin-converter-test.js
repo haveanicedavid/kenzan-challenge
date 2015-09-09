@@ -45,9 +45,15 @@ describe('Coin Converter', function() {
     assert.equal(coin.onePence, 1);
   });
 
-  it('converts pence if a p is present without ', function () {
-    var coin = new coinConverter('3.65p');
-    assert.equal(coin.twoPound, 1);
+  it('converts pence if a p is present without £', function () {
+    var coin = new coinConverter('2p');
+    assert.equal(coin.twoPence, 1);
+  });
+
+  it('converts £4.20p', function () {
+    var coin = new coinConverter('£4.20p');
+    assert.equal(coin.twoPound, 2);
+    assert.equal(coin.twentyPence, 1);
   });
 
 });
