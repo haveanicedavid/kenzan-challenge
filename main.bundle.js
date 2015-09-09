@@ -45,8 +45,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-	__webpack_require__(3);
-	__webpack_require__(4);
+	(function webpackMissingModule() { throw new Error("Cannot find module \"run\""); }());
+	(function webpackMissingModule() { throw new Error("Cannot find module \"build\""); }());
 
 
 /***/ },
@@ -54,11 +54,20 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(2);
-	module.exports = angular;
+	__webpack_require__(4);
+	__webpack_require__(5);
 
 
 /***/ },
 /* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(3);
+	module.exports = angular;
+
+
+/***/ },
+/* 3 */
 /***/ function(module, exports) {
 
 	/**
@@ -28751,23 +28760,23 @@
 	!window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var angular = __webpack_require__(1);
+	var angular = __webpack_require__(2);
 
 	var app = angular.module('kenzanApplication', []);
 
 	module.exports = app;
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var app = __webpack_require__(3);
+	var app = __webpack_require__(4);
 
-	__webpack_require__(5);
 	__webpack_require__(6);
+	__webpack_require__(7);
 
 	app.controller('MainController', ['$scope', 'coinConverter', 'validEntry', function($scope, coinConverter, validEntry) {
 	// app.controller('MainController', ['$scope', 'convertCoins', function($scope, convertCoins) {
@@ -28802,10 +28811,10 @@
 
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var app = __webpack_require__(3);
+	var app = __webpack_require__(4);
 
 	var coinValues = {
 	  twoPound:    200,
@@ -28856,10 +28865,10 @@
 	});
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var app = __webpack_require__(3);
+	var app = __webpack_require__(4);
 
 	function validEntry (input) {
 	  var VALID_CHARS  = /[^.p£\d]/g;

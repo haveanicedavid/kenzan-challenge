@@ -6,6 +6,7 @@
   "scripts": {
     "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "test": "./node_modules/mocha/bin/mocha ./test"
+    "build": "./node_modules/webpack/bin/webpack.js",
   },
   "repository": {
     "type": "git",
