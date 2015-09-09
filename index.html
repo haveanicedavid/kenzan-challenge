@@ -16,15 +16,15 @@
 
       <form name="form" nonvalidate>
         <label>
-          <!-- <span>Starting Amount :</span> -->
           <input ng-model="pennies" validCurrency id="pennies"  name="pennies" placeholder="Starting Amount" />
         </label>
       </form>
 
       <label>
-        <span ng-show="showInvalidError" id="input-notice">Input must be made of digits, pence, and £ symbols. </span>
-        <span>&nbsp;</span> 
         <input type="button" class="button" value="Convert" ng-click="convertCoins()"/> 
+        <div class="center">
+        <span ng-show="showInvalidError" id="input-notice">Input must be made of numbers, pence (p), and pound (£) symbols. </span>
+      </div>
       </label>    
 
 

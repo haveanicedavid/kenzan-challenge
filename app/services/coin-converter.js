@@ -28,8 +28,6 @@ function coinConverter (startingCurrency) {
   return coins;
 }
 
-// startingcurrency = string
-// Pound sign needs to be in the validations, but can be ingored for conversion
 function sanitizeCurrency (startingCurrency) {
   var parsedCurrency = startingCurrency.replace(/[^.p\d]/g, "");
 

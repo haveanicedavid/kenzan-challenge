@@ -18,7 +18,6 @@ app.controller('MainController', ['$scope', 'coinConverter', 'validEntry', funct
     twoPound:    0
   };
 
-
   $scope.convertCoins = function() {
 
     if (validEntry($scope.pennies)) {
@@ -34,14 +33,3 @@ app.controller('MainController', ['$scope', 'coinConverter', 'validEntry', funct
   };
 
 }]);
-
-// function isValidEntry (input) {
-//   var VALID_CHARS  = /[^.p£\d]/g;
-//   var ONLY_NUMBERS = /\d/;
-
-//   if (VALID_CHARS.test(input) || ! ONLY_NUMBERS.test(input)) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }

@@ -5,12 +5,18 @@ table#main {
 .amount {
     text-align: right;
 }
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #pennies {
     margin-left: 37%;
 }
 
 #input-notice {
-    margin-left: 10px;
+    margin: 15%;
 }
 /* Basic Grey */
 .basic-grey {
@@ -48,7 +54,7 @@ table#main {
     margin-top: 4px;
     color: #888;
 }
-.basic-grey input[type="text"], .basic-grey input[type="email"], .basic-grey textarea, .basic-grey select {
+.basic-grey input[type="text"] {
     border: 1px solid #DADADA;
     color: #888;
     height: 30px;
@@ -80,7 +86,8 @@ table#main {
     text-shadow: 1px 1px 1px #9E3F3F;
     cursor: pointer;
     margin: 10px;
-    margin-left: -15px;
+    margin-left: 41%;
+    margin-right: auto;
 }
 .basic-grey .button:hover {
     background: #CF7A7A
