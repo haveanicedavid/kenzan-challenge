@@ -4,7 +4,6 @@ require('../services/coin-converter.js');
 require('../services/valid-entry.js');
 
 app.controller('MainController', ['$scope', 'coinConverter', 'validEntry', function($scope, coinConverter, validEntry) {
-// app.controller('MainController', ['$scope', 'convertCoins', function($scope, convertCoins) {
 
   $scope.showInvalidError = false; // This is not an ideal way to do validations
 

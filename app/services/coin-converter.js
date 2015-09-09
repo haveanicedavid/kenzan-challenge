@@ -29,13 +29,16 @@ function coinConverter (startingCurrency) {
 }
 
 function sanitizeCurrency (startingCurrency) {
+  // Replace everything but digits, period, and 'p'
   var parsedCurrency = startingCurrency.replace(/[^.p\d]/g, "");
 
   if (parsedCurrency.indexOf("p") > -1) {
     if (parsedCurrency.indexOf('.') > -1) {
+      // if both a 'p' and '.' are present, the value needs to be converted to raw pennies
       var int = parseFloat(parsedCurrency.replace(/[^.\d]/g, ""));
       return int.toFixed(2) * 100;
     } else {
+      // otherwise, the value is already in penny form
       var int = parseFloat(parsedCurrency.replace(/[^\d]/g, ""));
       return parseFloat(int).toFixed(2);
     }
