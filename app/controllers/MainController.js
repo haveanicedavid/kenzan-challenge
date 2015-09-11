@@ -3,7 +3,7 @@ var app = require('../app.js');
 require('../services/coin-converter.js');
 require('../services/valid-entry.js');
 
-app.controller('MainController', ['$scope', 'coinConverter', 'validEntry', function($scope, coinConverter, validEntry) {
+app.controller('MainController', ['$scope', 'coinConverter', 'invalidEntry', function($scope, coinConverter, invalidEntry) {
 
   $scope.showInvalidError = false; // This is not an ideal way to do validations
 
@@ -19,7 +19,7 @@ app.controller('MainController', ['$scope', 'coinConverter', 'validEntry', funct
 
   $scope.convertCoins = function() {
 
-    if (validEntry($scope.pennies)) {
+    if (invalidEntry($scope.pennies)) {
       $scope.showInvalidError = true;
     } else {
       $scope.showInvalidError = false;

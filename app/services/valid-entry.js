@@ -1,6 +1,6 @@
 var app = require('../app.js');
 
-function validEntry (input) {
+function invalidEntry (input) {
   var VALID_CHARS  = /[^.p£\d]/g;
   var ONLY_NUMBERS = /\d/;
 
@@ -11,6 +11,6 @@ function validEntry (input) {
   }
 }
 
-app.factory("validEntry", function() {
-  return validEntry;
+app.factory("invalidEntry", function() {
+  return invalidEntry;
 });
