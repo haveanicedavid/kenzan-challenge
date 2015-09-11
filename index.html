@@ -11,12 +11,12 @@
 
     <div class="basic-grey">
       <h1>Coin Converter
-        <span>Please insert a number to be converted</span>
+        <span>Please insert a value to be converted</span>
       </h1>
 
       <form name="form" nonvalidate>
         <label>
-          <input ng-model="pennies" validCurrency id="pennies"  name="pennies" placeholder="Starting Amount" />
+          <input ng-model="pennies" validCurrency id="pennies"  name="pennies" placeholder="Starting Amount (£0.0p)" />
         </label>
       </form>
 
@@ -28,14 +28,14 @@
       </label>    
 
 
-      <table id="main">
+      <table id="main-table">
         <tr>
           <th class="coin">Coin</th>
           <th class="amount">Amount</th>
         </tr>
 
         <tr>
-          <td>1p</td>
+          <td class="coin">1p</td>
           <td class="amount">{{ coins.onePence }}</td>
         </tr>
 
@@ -45,22 +45,22 @@
         </tr>
 
         <tr>
-          <td>20p</td>
+          <td class="coin">20p</td>
           <td class="amount">{{ coins.twentyPence }}</td>
         </tr>
 
         <tr>
-          <td>50p</td>
+          <td class="coin">50p</td>
           <td class="amount">{{ coins.fiftyPence }}</td>
         </tr>
 
         <tr>
-          <td>£1</td>
+          <td class="coin">£1</td>
           <td class="amount">{{ coins.onePound }}</td>
         </tr>
 
         <tr>
-          <td>£2</td>
+          <td class="coin">£2</td>
           <td class="amount">{{ coins.twoPound }}</td>
         </tr>
       </table>

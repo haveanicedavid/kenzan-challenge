@@ -1,9 +1,20 @@
-table#main {
+/*table#main {
     margin-left: auto;
     margin-right: auto;
 }
+*/
+#main-table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 185px;
+}
+
 .amount {
     text-align: right;
+}
+
+.coin {
+    text-align: left;
 }
 
 .center {
@@ -12,7 +23,9 @@ table#main {
 }
 
 #pennies {
-    margin-left: 37%;
+    margin-left: 35%;
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
 #input-notice {
